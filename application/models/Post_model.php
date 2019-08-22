@@ -4,6 +4,7 @@
       public function __construct(){
         $this->load->database();
       }
+
       public function get_posts($id = FALSE){
         if ($id == FALSE) {
           $query = $this->db->get('posts');
@@ -14,4 +15,14 @@
         }
 
       }
+
+      public function update_post(){
+        $data = array(
+          'title' => $this->input->post('title'),
+          'body' => $this->input->post('body')
+        );
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('posts', $data);
+      }
+
   }
